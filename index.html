@@ -1,0 +1,40 @@
+<style>
+main{
+  display:grid;
+  grid: auto/
+  repeat(3,1fr);
+  grid-gap:2em;
+}
+div{
+  display:grid;
+  grid: auto/
+  repeat(4,1fr);
+}
+</style>
+<center>
+<main>
+<a># of dice</a>
+<a>Min</a>
+<a>Max</a>
+<input value=1 type="number">
+<input value=0 type="number">
+<input value=2 type="number">
+<a></a><button onclick="roll()">Roll</button><a></a>
+</main>
+<div></div>
+<p></p>
+</center>
+<script>
+let tn=e=>document.getElementsByTagName(e),
+inputs=e=>Number(tn('input')[e].value);
+var roll=e=>{
+  let total=0;
+  tn('div')[0].innerHTML=[...Array(inputs(0))].map((e,i)=>{
+    let tmp=Math.floor(Math.random()*(inputs(2)+1))+inputs(1);
+    //Math.floor(Math.random() * 100) + 1; 1-100
+    total+=tmp;
+    return `<a style="border-style:solid">${tmp}</a>`;
+  }).join('');
+  tn('p')[0].textContent=`The total is ${total}`;
+}
+</script>
